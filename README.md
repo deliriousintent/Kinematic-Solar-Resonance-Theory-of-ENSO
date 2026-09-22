@@ -57,7 +57,7 @@ The KSR engine is **not an energy-balance thermometer**; it is an **incipient mo
 
 ## 2. Dynamical Relay Architecture
 
-
+```
 [PLANETARY DYNAMO CLOCK]
 Venus + Earth + Jupiter + Saturn ──► Tachocline Shear / Tayler Instability (Stefani et al.)
                                                       │
@@ -92,7 +92,7 @@ Jan–Jul Insolation Decay Slope (K)                    │
                [CONTINUOUS TANH STATE ENGINE]
                       ENSO State (±10)
 
-
+```
 ---
 
 ## 3. Track 1: Heliocentric Center-of-Mass Kinematics ($K$)
