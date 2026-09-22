@@ -130,7 +130,7 @@ The Southern Hemisphere contains $\approx 81\%$ ocean coverage. As Earth approac
 Using NASA JPL Horizons `DE421` ephemerides, the effective insolation anomaly is integrated via Simpson’s Rule and normalized via Z-score scaling:
 
 $$
-\delta I(y) = I_{\text{eff}}(y) - \mu_{I, \text{1981--2010}}
+\delta I(y) = I_{\text{eff}}(y) - \mu_{I, \text{1981-2010}}
 $$
 
 $$
