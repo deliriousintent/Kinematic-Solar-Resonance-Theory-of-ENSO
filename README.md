@@ -162,6 +162,7 @@ The solar tachocline sits at the base of the convective envelope, $200,000\text{
 4. **Walker Deceleration & WWBs:** Descending tropospheric jet perturbations directly decelerate the Pacific Walker Circulation and reduce the equatorial sea-level pressure gradient (Misios, Schmidt, & Haigh, 2019). This initiates **Westerly Wind Bursts (WWBs)** in the western Pacific warm pool, launching downwelling equatorial Kelvin waves that collapse the thermocline (Harrison & Vecchi, 1997; Yu & Fedorov, 2022).
 
 ### 4.4 Mathematical Definition of $\Gamma(t)$
+
 $$
 \text{SSN\_Velocity}(t) = \left| \overline{\text{SSN}}_{4\text{-wk}}(t) - \overline{\text{SSN}}_{4\text{-wk}}(t-1\text{ wk}) \right|
 $$
