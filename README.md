@@ -268,9 +268,9 @@ The KSR engine provides a testable forward projection:
 * **Early 2027:** Jupiter reaches opposition on **February 11, 2027**. Kinematically, Earth enters a receding warming phase ($K > 0$).
 * **The Decoupling:** However, because the oceanic capacitor will be completely drained ($\Omega_{mem} \to -4.0\text{ to }-5.0$) and Solar Cycle 25 will be decelerating on its declining phase ($\Gamma \to 1.0\text{–}1.2$), the depleted ocean battery dominates the equation:
 
-  $$
-  E_M(2027) = \left[ \underbrace{K(+1.0)}_{\text{Warming Bias}} + \underbrace{\Omega_{mem}(-5.0)}_{\text{Exhausted Battery}} \right] \times \underbrace{\Gamma(1.1)}_{\text{Quiet Sun}} \times \kappa \approx \mathbf{-1.0 \text{ per week}}
-  $$
+ $$
+E_M(2027) = \left[ \underbrace{K(+1.0)}_{\text{Warming Bias}} + \underbrace{\Omega_{mem}(-5.0)}_{\text{Exhausted Battery}} \right] \times \underbrace{\Gamma(1.1)}_{\text{Quiet Sun}} \times \kappa \approx \mathbf{-1.0 \text{ per week}}
+ $$
   
 * **Forecast:** The model projects a rapid post-peak decay through mid-2027, transitioning into an aggressive multi-year **La Niña recharge setup across 2027–2028**.
 
