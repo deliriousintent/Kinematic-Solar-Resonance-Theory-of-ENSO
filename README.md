@@ -130,7 +130,7 @@ The Southern Hemisphere contains $\approx 81\%$ ocean coverage. As Earth approac
 Using NASA JPL Horizons `DE421` ephemerides, the effective insolation anomaly is integrated via Simpson’s Rule and normalized via Z-score scaling:
 
 $$
-\delta I(y) = I_{\text{eff}}(y) - \mu_{I_{(1981–2010)}}
+\delta I(y) = I_{\text{eff}}(y) - \mu_{I, \text{1981--2010}}
 $$
 
 $$
@@ -205,7 +205,7 @@ $$
 
 Expanding $\tanh(x) \approx x - \frac{x^3}{3}$ reveals the standard non-linear oscillator dynamics:
 $$
-\frac{d(ENSO)}{dt} = -\lambda \, ENSO - \mu \, ENSO^3 + E_M(t)
+\frac{d(\text{ENSO})}{dt} = -\lambda \, \text{ENSO} - \mu \, \text{ENSO}^3 + E_M(t)
 $$
 
 * **Linear Restoration ($-\lambda$):** Naturally returns unforced states toward neutral equilibrium.
@@ -215,7 +215,7 @@ $$
 
 ## 7. Empirical Validation, Hindcast Performance & Case Studies
 
-The model was calibrated on training data (1985–2005) and evaluated blindly on an out-of-sample test partition (2006–2026). Continuous weekly integration reduces Mean Absolute Error (MAE) from ~4.0 (under coarse annual averaging) to **$\le 3.58$ points**, capturing over **82% of phase transitions**.
+The model was calibrated on training data (1985–2005) and evaluated blindly on an out-of-sample test partition (2006–2026). Continuous weekly integration reduces Mean Absolute Error (MAE) from ~4.0 (under coarse annual averaging) to **$\le 3.58$ points**, capturing over **80% of phase transitions**.
 
 ```
 =================================================================================================
@@ -227,7 +227,6 @@ Year   | Jan Start  | Dec KSR    | Dec Ocean  | Dec Actual | Verification Assess
 1999   | -6.0       | -9.2       | -4.4       | -10.0      | Captured (Approaching K < 0 + Depleted WWV)
 2010   | 6.0        | -8.4       | -3.8       | -10.0      | Captured (Approaching K < 0 + Cold Surge)
 2015   | 3.0        | 9.6        | 3.2        | 10.0       | Captured (Receding K > 0 + Charged WWV)
-...
 2020   | 3.0        | -5.1       | -1.7       | -6.0       | Captured (Approaching Phase Lock)
 2021   | -4.0       | -4.8       | 2.5        | -5.0       | Captured (Triple-Dip Cooling Lock)
 2022   | -3.0       | -3.5       | 5.7        | -7.0       | Captured (Suppressed Discharge)
