@@ -1,24 +1,25 @@
 """
 Kinematic-Solar Resonance Theory of ENSO - Empirical Test Suite
-Author: delirum [HUNT]
+Author: [Your Name/Handle]
 Description: Calculates the ENSO Momentum Delta (E_M) and subsequent ENSO state 
-using NASA JPL Horizons heliocentric distances, detrended Warm Water Volume (WWV) Z-scores, 
-and lagged Solar Sunspot velocity (TMA).
+using NASA JPL Horizons heliocentric distances (12-month weighted insolation integral), 
+detrended Warm Water Volume (WWV) Z-scores, and lagged Solar CME velocity (TMA).
+Designed to bypass the Spring Predictability Barrier (SPB).
 """
 
 import numpy as np
 import pandas as pd
-from scipy.integrate import simpson # Updated from simps to simpson for modern SciPy
+from scipy.integrate import simpson
 
 class KinematicEnsoModel:
-    def __init__(self, alpha=1.2, beta=0.8, c_k=1.0, gamma_coef=0.1, c_wwv=2.0):
+    def __init__(self, alpha=1.2, beta=0.8, c_k=1.0, gamma_coef=0.15, c_wwv=2.5):
         """
         Initialize the model with tunable empirical calibration constants.
-        alpha: Northern Continental Volatility Weight
-        beta: Southern Oceanic Absorption Weight
+        alpha: Northern Continental Volatility Weight (High)
+        beta: Southern Oceanic Absorption Weight (Low)
         c_k: Kinematic scaling constant for insolation anomaly
-        gamma_coef: Solar derivative scaling constant
-        c_wwv: Ocean memory scaling constant
+        gamma_coef: Solar derivative scaling constant (CME/EPP frequency)
+        c_wwv: Ocean memory scaling constant (WWV capacity)
         """
         self.S_0 = 1361.0  # Solar constant in W/m^2
         self.alpha = alpha
@@ -34,7 +35,6 @@ class KinematicEnsoModel:
     def calibrate_baselines(self, historical_I_eff, historical_wwv):
         """
         Freeze the reference period means and standard deviations.
-        This satisfies the requirement to evaluate anomalies against a fixed past.
         """
         self.I_ref_mean = np.mean(historical_I_eff)
         self.wwv_ref_std = np.std(historical_wwv)
@@ -60,7 +60,7 @@ class KinematicEnsoModel:
         I_north = simpson(S_jan_jul)
         I_south = simpson(S_jul_jan)
         
-        # Calculate Effective Annual Insolation
+        # Calculate Effective Annual Insolation (weighted for Hemispheric Asymmetry)
         I_eff = (self.alpha * I_north) + (self.beta * I_south)
         
         # Calculate Anomaly (delta I)
@@ -72,9 +72,8 @@ class KinematicEnsoModel:
 
     def calculate_solar_amplifier(self, ssn_series):
         """
-        Calculates the Geomagnetic Forcing Factor (Gamma) using a 
-        12-month trailing moving average (TMA), lagged by 6 months.
-        ssn_series: Pandas Series of monthly sunspot numbers
+        Calculates the Geomagnetic Forcing Factor (Gamma) representing CME frequency.
+        Uses a 12-month trailing moving average (TMA), lagged by 6 months for propagation.
         """
         # 12-month Trailing Moving Average, lagged 6 months
         tma_lagged = ssn_series.rolling(window=12).mean().shift(6)
@@ -84,7 +83,7 @@ class KinematicEnsoModel:
         
         # Calculate Gamma and clip between [1.0, 3.0]
         gamma = np.clip(1.0 + self.gamma_coef * d_ssn_dt, 1.0, 3.0)
-        return gamma.iloc[-1] # Return the current target year's Gamma
+        return gamma.iloc[-1] 
 
     def calculate_ocean_memory(self, wwv_anom):
         """
@@ -124,7 +123,6 @@ if __name__ == "__main__":
     model = KinematicEnsoModel(c_k=1.0, gamma_coef=0.15, c_wwv=2.5)
 
     # 1. Freeze the Reference Baselines (Mock historical data for 1950-1980)
-    # This proves to AlexAI we are not bleeding future data into past predictions
     mock_historical_I_eff = np.random.normal(loc=1.3e6, scale=5000, size=30)
     mock_historical_wwv = np.random.normal(loc=0.0, scale=1.2, size=30)
     model.calibrate_baselines(mock_historical_I_eff, mock_historical_wwv)
@@ -136,13 +134,8 @@ if __name__ == "__main__":
     wwv_anom_1997 = 2.4        # Heavy warm water buildup (simulated raw anomaly)
     gamma_1997 = 3.0           # Solar cycle 23 rapid rise
 
-    # Transform WWV into Omega_mem
     omega_1997 = model.calculate_ocean_memory(wwv_anom_1997)
-
-    # Calculate
-    delta_1997, state_1997 = model.predict_enso_state(
-        prev_enso_1996, K_1997, omega_1997, gamma_1997
-    )
+    delta_1997, state_1997 = model.predict_enso_state(prev_enso_1996, K_1997, omega_1997, gamma_1997)
     
     print(f"Previous State: {prev_enso_1996}")
     print(f"Ocean Memory (Omega): {omega_1997:.2f}")
@@ -157,13 +150,8 @@ if __name__ == "__main__":
     wwv_anom_1988 = -2.4       # Exhausted ocean battery (simulated raw anomaly)
     gamma_1988 = 3.0           # Solar cycle 22 rapid rise
 
-    # Transform WWV into Omega_mem
     omega_1988 = model.calculate_ocean_memory(wwv_anom_1988)
-
-    # Calculate
-    delta_1988, state_1988 = model.predict_enso_state(
-        prev_enso_1987, K_1988, omega_1988, gamma_1988
-    )
+    delta_1988, state_1988 = model.predict_enso_state(prev_enso_1987, K_1988, omega_1988, gamma_1988)
     
     print(f"Previous State: {prev_enso_1987}")
     print(f"Ocean Memory (Omega): {omega_1988:.2f}")
