@@ -109,7 +109,7 @@ The background seasonal pacing bias is dictated by the **Earth–Jupiter Synodic
 Rather than treating seasonal insolation uniformly, the model accounts for the radical difference in specific heat capacity between land
 
 $$
-($c_p \approx 800\ \text{J}/(\text{kg}\cdot\text{K})$) and seawater ($c_p \approx 4,184\ \text{J}/(\text{kg}\cdot\text{K})$):
+($c_p \approx 800\ \text{J}/(\text{kg}\cdot\text{K})$)$ and seawater $($c_p \approx 4,184\ \text{J}/(\text{kg}\cdot\text{K})$):
 $$
 
 $$
