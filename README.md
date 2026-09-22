@@ -164,11 +164,11 @@ The solar tachocline sits at the base of the convective envelope, $200,000\text{
 ### 4.4 Mathematical Definition of $\Gamma(t)$
 
 $$
-\text{SSN\_Velocity}(t) = \left| \overline{\text{SSN}}_{4\text{-wk}}(t) - \overline{\text{SSN}}_{4\text{-wk}}(t-1\text{ wk}) \right|
+v_{\text{SSN}}(t) = \left\vert \overline{\text{SSN}}_{\text{4-wk}}(t) - \overline{\text{SSN}}_{\text{4-wk}}(t - 1\text{ wk}) \right\vert
 $$
 
 $$
-\Gamma(t) = \min\left(3.0, \max\left(1.0, 1.0 + \gamma \cdot \frac{\text{SSN\_Velocity}(t - \tau)}{\sigma_{\text{vel}}} \right)\right)
+\Gamma(t) = \min\left(3.0, \max\left(1.0, 1.0 + \gamma \cdot \frac{v_{\text{SSN}}(t - \tau)}{\sigma_{\text{vel}}} \right)\right)
 $$
 
 
