@@ -34,11 +34,14 @@ The KSR framework establishes that celestial mechanics operate exclusively throu
 
 ### 1.2 Heliocentric Euclidean Distance vs. The Barycentric Fallacy
 The Solar System Barycenter (SSB) is an abstract mathematical origin that emits zero radiation and exerts zero direct force. The physical metric governing terrestrial irradiance is strictly the **light-time corrected Euclidean distance between the physical center of mass of the Sun (NAIF ID 10) and the physical center of mass of the Earth (NAIF ID 399)**:
-
+```
 $$r(t) = \|\mathbf{r}_{\text{Earth}}(t) - \mathbf{r}_{\text{Sun}}(t)\|$$
+```
 
 Governed by Newtonian multi-body differential equations of motion:
+```
 $$\ddot{\mathbf{r}} = -\frac{G(M_{\odot} + M_{\oplus})}{r^3}\mathbf{r} + \sum_{j \in \{\text{planets}\}} G M_j \left( \frac{\mathbf{r}_j - \mathbf{r}}{\|\mathbf{r}_j - \mathbf{r}\|^3} - \frac{\mathbf{r}_j}{\|\mathbf{r}_j\|^3} \right)$$
+```
 
 Because planetary perturbations pull unevenly on the Earth and the Sun, the physical separation $r(t)$ continuously expands or contracts relative to an unperturbed Keplerian ellipse.
 
