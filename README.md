@@ -34,14 +34,11 @@ The KSR framework establishes that celestial mechanics operate exclusively throu
 
 ### 1.2 Heliocentric Euclidean Distance vs. The Barycentric Fallacy
 The Solar System Barycenter (SSB) is an abstract mathematical origin that emits zero radiation and exerts zero direct force. The physical metric governing terrestrial irradiance is strictly the **light-time corrected Euclidean distance between the physical center of mass of the Sun (NAIF ID 10) and the physical center of mass of the Earth (NAIF ID 399)**:
-
 $$
 r(t) = \|\mathbf{r}_{\text{Earth}}(t) - \mathbf{r}_{\text{Sun}}(t)\|
 $$
 
-
 Governed by Newtonian multi-body differential equations of motion:
-
 $$
 \ddot{\mathbf{r}} = -\frac{G(M_{\odot} + M_{\oplus})}{r^3}\mathbf{r} + \sum_{j \in \{\text{planets}\}} G M_j \left( \frac{\mathbf{r}_j - \mathbf{r}}{\|\mathbf{r}_j - \mathbf{r}\|^3} - \frac{\mathbf{r}_j}{\|\mathbf{r}_j\|^3} \right)
 $$
@@ -109,13 +106,13 @@ The background seasonal pacing bias is dictated by the **Earth–Jupiter Synodic
 ### 3.1 The Dual-Phase 12-Month Energetic Cycle
 Rather than treating seasonal insolation uniformly, the model accounts for the radical difference in specific heat capacity between land
 
-```
+$$
 ($c_p \approx 800\ \text{J}/(\text{kg}\cdot\text{K})$) and seawater ($c_p \approx 4,184\ \text{J}/(\text{kg}\cdot\text{K})$):
-```
+$$
 
-```
-$$I_{\text{eff}}(y) = \alpha \int_{\text{Jan 1}}^{\text{Jul 1}} \frac{S_0}{r(t)^2} dt \ + \ \beta \int_{\text{Jul 1}}^{\text{Dec 31}} \frac{S_0}{r(t)^2} dt$$
-```
+$$
+I_{\text{eff}}(y) = \alpha \int_{\text{Jan 1}}^{\text{Jul 1}} \frac{S_0}{r(t)^2} dt \ + \ \beta \int_{\text{Jul 1}}^{\text{Dec 31}} \frac{S_0}{r(t)^2} dt
+$$
 
 Where $\alpha = 1.2$ and $\beta = 0.8$ reflect the thermal inertia of the hemispheres.
 
@@ -134,9 +131,13 @@ The Southern Hemisphere contains $\approx 81\%$ ocean coverage. As Earth approac
 ### 3.2 Mathematical Definition of $K(t)$
 Using NASA JPL Horizons `DE421` ephemerides, the effective insolation anomaly is integrated via Simpson’s Rule and normalized via Z-score scaling:
 
-$$\delta I(y) = I_{\text{eff}}(y) - \mu_{I_{(1981–2010)}}$$
+$$
+\delta I(y) = I_{\text{eff}}(y) - \mu_{I_{(1981–2010)}}
+$$
 
-$$K(y) = \tanh\left( \frac{\delta I(y)}{\sigma_I} \right) \in [-1.0, 1.0]$$
+$$
+K(y) = \tanh\left( \frac{\delta I(y)}{\sigma_I} \right) \in [-1.0, 1.0]
+$$
 
 Where $\mu_I$ and $\sigma_I$ are established over the standard WMO 30-year climatological baseline (1981–2010). The sign convention is fixed from first principles of continental thermodynamics: $K > 0$ strictly favors warming.
 
@@ -159,11 +160,14 @@ The solar tachocline sits at the base of the convective envelope, $200,000\text{
 4. **Walker Deceleration & WWBs:** Descending tropospheric jet perturbations directly decelerate the Pacific Walker Circulation and reduce the equatorial sea-level pressure gradient (Misios, Schmidt, & Haigh, 2019). This initiates **Westerly Wind Bursts (WWBs)** in the western Pacific warm pool, launching downwelling equatorial Kelvin waves that collapse the thermocline (Harrison & Vecchi, 1997; Yu & Fedorov, 2022).
 
 ### 4.4 Mathematical Definition of $\Gamma(t)$
-```
-$$\text{SSN\_Velocity}(t) = \left| \overline{\text{SSN}}_{4\text{-wk}}(t) - \overline{\text{SSN}}_{4\text{-wk}}(t-1\text{ wk}) \right|$$
+$$
+\text{SSN\_Velocity}(t) = \left| \overline{\text{SSN}}_{4\text{-wk}}(t) - \overline{\text{SSN}}_{4\text{-wk}}(t-1\text{ wk}) \right|
+$$
 
-$$\Gamma(t) = \min\left(3.0, \max\left(1.0, 1.0 + \gamma \cdot \frac{\text{SSN\_Velocity}(t - \tau)}{\sigma_{\text{vel}}} \right)\right)$$
-```
+$$
+\Gamma(t) = \min\left(3.0, \max\left(1.0, 1.0 + \gamma \cdot \frac{\text{SSN\_Velocity}(t - \tau)}{\sigma_{\text{vel}}} \right)\right)
+$$
+
 
 * Bounded between $[1.0, 3.0]$.
 * $\Gamma = 1.0$ represents a quiescent, stable Sun (baseline passive mechanics).
@@ -187,17 +191,23 @@ $$\Omega_{mem}(t) = \max\left(-5.0, \min\left(5.0, \left(\frac{WWV_{\text{anom}}
 
 At each weekly time step $t$, the instantaneous ENSO Momentum ($E_M$) is calculated:
 
-$$E_M(t) = \left[ K(t) + \Omega_{mem}(t) \right] \times \Gamma(t) \times \kappa$$
+$$
+E_M(t) = \left[ K(t) + \Omega_{mem}(t) \right] \times \Gamma(t) \times \kappa
+$$
 
 Where $\kappa = \frac{12.0}{52.0}$ distributes annual momentum across continuous weekly increments.
 
 ### Continuous Non-Linear Saturation via $\tanh$
 To model thermodynamic limits without artificial clipping, the state update is integrated through a hyperbolic tangent function:
 
-$$ENSO_t = 10.0 \times \tanh\left( \frac{ENSO_{t-1} + E_M(t)}{10.0} \right)$$
+$$
+ENSO_t = 10.0 \times \tanh\left( \frac{ENSO_{t-1} + E_M(t)}{10.0} \right)
+$$
 
 Expanding $\tanh(x) \approx x - \frac{x^3}{3}$ reveals the standard non-linear oscillator dynamics:
-$$\frac{d(ENSO)}{dt} = -\lambda \, ENSO - \mu \, ENSO^3 + E_M(t)$$
+$$
+\frac{d(ENSO)}{dt} = -\lambda \, ENSO - \mu \, ENSO^3 + E_M(t)
+$$
 
 * **Linear Restoration ($-\lambda$):** Naturally returns unforced states toward neutral equilibrium.
 * **Cubic Damping ($-\mu$):** Enforces thermal exhaustion as states approach Super El Niño ($+10.0$) or Super La Niña ($-10.0$).
