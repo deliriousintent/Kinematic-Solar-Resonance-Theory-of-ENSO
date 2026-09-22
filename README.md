@@ -195,7 +195,7 @@ $$\frac{d(ENSO)}{dt} = -\lambda \, ENSO - \mu \, ENSO^3 + E_M(t)$$
 
 The model was calibrated on training data (1985–2005) and evaluated blindly on an out-of-sample test partition (2006–2026). Continuous weekly integration reduces Mean Absolute Error (MAE) from ~4.0 (under coarse annual averaging) to **$\le 3.58$ points**, capturing over **82% of phase transitions**.
 
-
+```
 =================================================================================================
 Year   | Jan Start  | Dec KSR    | Dec Ocean  | Dec Actual | Verification Assessment
 =================================================================================================
@@ -212,7 +212,7 @@ Year   | Jan Start  | Dec KSR    | Dec Ocean  | Dec Actual | Verification Assess
 2023   | -2.0       | 8.4        | 3.2        | 8.0        | Captured (Solar Override: Cycle 25 Surge)
 2026   | -2.0       | 9.8        | 9.1        | 10.0       | Captured (Triple Constructive Resonance)
 =================================================================================================
-
+```
 
 ### 7.1 Case Study: The 2008–2010 Delayed-Onset Transition
 * **The 2-Year Charge (2007–2008):** The 2007–2008 Super La Niña pumped heat into the Western Pacific thermocline ($WWV_{\text{anom}}$ climbed from $-0.64$ to $+1.17 \times 10^{14}\ \text{m}^3$).
