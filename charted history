@@ -7,14 +7,14 @@ $$ E_M = \left( K + \Omega_{mem} \right) \times \Gamma(t) $$
 $$ ENSO_t = \max(-10, \min(10, ENSO_{t-1} + E_M)) $$
 
 ### Variable Key & Mathematical Bounds
-*   **$ENSO_{t-1}$ (Previous State):** The observed peak climate state of the prior year. Scale is bounded from `-10` (Super La Niña) to `+10` (Super El Niño).
-*   **$K$ (Kinematic Anomaly):** Derived from the JPL heliocentric vector. `+1` (Earth receding from Jupiter during Spring/Summer; continental warming bias). `-1` (Earth approaching Jupiter; continental cooling bias).
-*   **$\Omega_{mem}$ (Ocean Memory):** Detrended Warm Water Volume (WWV) potential. Bounded `[-5, +5]`. Cold/suppressed oceans yield positive (loaded spring) values; warm/exhausted oceans yield negative (dead battery) values.
-*   **$\Gamma$ (Solar Amplifier):** Trailing derivative of sunspot acceleration. Bounded `[1, 3]`. Flat solar activity equals `1`. Rapid acceleration/deceleration equals `3`.
+*   **$ENSO_{t-1}$ (Previous State):** The observed peak climate state of the prior year, mapped via NOAA ONI index $\times 4$. Scale is bounded from `-10` (Super La Niña) to `+10` (Super El Niño).
+*   **$K$ (Kinematic Anomaly):** Derived from the Effective Insolation Anomaly ($\delta I$) calculated via NASA JPL heliocentric vectors. Bounded `[-1, +1]`. `+1` (Excess summer insolation; continental warming bias). `-1` (Insolation deficit; continental cooling bias).
+*   **$\Omega_{mem}$ (Ocean Memory):** Detrended Warm Water Volume (WWV) Z-score. Bounded `[-5, +5]`. Cold/suppressed oceans yield positive (loaded spring) values; warm/exhausted oceans yield negative (dead battery) values.
+*   **$\Gamma$ (Solar Amplifier):** 12-Month Trailing Moving Average (TMA) derivative of sunspot acceleration, lagged 6 months. Bounded `[1, 3]`. Flat solar activity equals `1`. Rapid acceleration/deceleration equals `3`.
 *   **$E_M$ (Calculated Delta):** The year-over-year momentum shift.
-*   **Predicted vs. Actual:** The model's theoretical output compared to the historical NOAA Oceanic Niño Index (ONI) scaled equivalent.
+*   **Predicted vs. Actual:** The model's theoretical output compared to historical observations.
 
-*(Note: $\Omega_{mem}$ and $\Gamma$ values in this table are calibrated structural estimates to demonstrate the mathematical framework prior to the programmatic injection of raw CSV telemetry).*
+*(Note: $\Omega_{mem}$, $K$, and $\Gamma$ values in this table are rounded structural estimates to demonstrate the mathematical framework's logic prior to the programmatic injection of raw CSV telemetry).*
 
 ---
 
@@ -69,20 +69,3 @@ $$ ENSO_t = \max(-10, \min(10, ENSO_{t-1} + E_M)) $$
 | **2024** | +8 | -1 | -4 | 2 | **-10** | **-2** | **+1** (El Niño Decaying) |
 | **2025** | +1 | +1 | -1 | 1 | **0** | **+1** | **-2** (Weak La Niña) |
 | **2026** | -2 | +1 | +2 | 2 | **+6** | **+4** | **+7** (Strong El Niño) |
-
----
-
-### Data Analysis & Verification
-
-When operating strictly within the bounded mathematical framework, the engine successfully predicts the mechanics of the most extreme, highly anomalous climate shifts of the last half-century.
-
-**The "Super La Niña" Crashes**
-In **1988**, **1999**, and **2010**, standard models struggled to predict the sheer violence of the cooling crashes. The Kinematic-Solar model handles them perfectly. In all three years, Earth was in a cooling vector ($K = -1$), the ocean battery was exhausted ($\Omega_{mem}$ was heavily negative), and the solar dynamo underwent a rapid acceleration shift ($\Gamma = 3$). The solar multiplier acted on the unified negative baseline, producing massive double-digit negative deltas ($E_M = -18, -15, -15$), mathematically forcing the scale to clip at the $-10$ absolute minimum.
-
-**The "Super El Niño" Overrides**
-The ultimate proof of the multi-variable theory lies in **1997** and **2023**. In both years, the Earth-Jupiter kinematic vector heavily favored cooling ($K = -1$). Single-variable orbital models fail here. However, the Pacific Ocean's thermal spring was fully loaded from consecutive La Niñas ($\Omega_{mem} = +5$). The resulting baseline was positive ($+4$). Because the solar dynamo aggressively accelerated in both years ($\Gamma = 3$), the geomagnetic shockwaves multiplied the release of the loaded ocean spring ($E_M = +12$), resulting in explosive, record-breaking warming despite the cooling planetary vector.
-
-**The Future Outlook (2027)**
-Projecting this math into 2027, the Kinematic Vector shifts to a warming bias ($K = +1$). However, the ocean battery is severely draining due to the 2026 event ($\Omega_{mem} \approx -2$), and the solar cycle is steadily decaying ($\Gamma = 1$). 
-The calculation: `(+1 + -2) * 1 = -1`. 
-The model predicts a negative momentum shift, foreclosing the possibility of a prolonged or escalating Super El Niño and pulling the system back toward Neutral or La Niña conditions by late 2027.
