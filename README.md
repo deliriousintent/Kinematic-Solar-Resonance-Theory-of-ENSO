@@ -101,8 +101,9 @@ The background seasonal pacing bias is dictated by the **Earth–Jupiter Synodic
 
 ### 3.1 The Dual-Phase 12-Month Energetic Cycle
 Rather than treating seasonal insolation uniformly, the model accounts for the radical difference in specific heat capacity between land ($c_p \approx 800\ \text{J}/(\text{kg}\cdot\text{K})$) and seawater ($c_p \approx 4,184\ \text{J}/(\text{kg}\cdot\text{K})$):
-
+```
 $$I_{\text{eff}}(y) = \alpha \int_{\text{Jan 1}}^{\text{Jul 1}} \frac{S_0}{r(t)^2} dt \ + \ \beta \int_{\text{Jul 1}}^{\text{Dec 31}} \frac{S_0}{r(t)^2} dt$$
+```
 
 Where $\alpha = 1.2$ and $\beta = 0.8$ reflect the thermal inertia of the hemispheres.
 
