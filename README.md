@@ -106,13 +106,13 @@ Jan–Jul Insolation Decay Slope (K)                    │
 The background seasonal pacing bias is dictated by the **Earth–Jupiter Synodic Cycle ($\approx 398.9\text{ days}$)** acting upon global land-sea distribution.
 
 ### 3.1 The Dual-Phase 12-Month Energetic Cycle
-Rather than treating seasonal insolation uniformly, the model accounts for the radical difference in specific heat capacity between continental land ($c_p \approx 800\text{ J}/(\text{kg}\cdot\text{K})$) and seawater ($c_p \approx 4,184\text{ J}/(\text{kg}\cdot\text{K})$):
+Rather than treating seasonal insolation uniformly, the model accounts for the radical difference in specific heat capacity between continental land $(c_p \approx 800\text{ J}/(\text{kg}\cdot\text{K}))$ and seawater $(c_p \approx 4,184\text{ J}/(\text{kg}\cdot\text{K}))$:
 
 $$
 I_{\text{eff}}(y) = \alpha \int_{\text{Jan 1}}^{\text{Jul 1}} \frac{S_0}{r(t)^2} dt \ + \ \beta \int_{\text{Jul 1}}^{\text{Dec 31}} \frac{S_0}{r(t)^2} dt
 $$
 
-Where $\alpha = 1.2$ and $\beta = 0.8$ reflect the thermal inertia of the hemispheres.
+Where α = 1.2 and β = 0.8 reflect the thermal inertia of the hemispheres.
 
 #### Phase I: The Continental Inception Window (January–July; $\alpha = 1.2$)
 The Northern Hemisphere contains $\approx 68\%$ of global landmass. Continental rock and soil react rapidly to orbital insolation changes between perihelion (early January) and aphelion (early July). Anomalous heating during this window modulates the barometric depth of continental thermal lows (e.g., the Asian and North American lows), determining the initial directional delta ($\frac{d(\text{ENSO})}{dt}$) by either collapsing or reinforcing equatorial Pacific trade winds:
