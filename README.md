@@ -3,7 +3,7 @@
 
 **Repository:** [Kinematic-Solar-Resonance-Theory-of-ENSO](https://github.com/deliriousintent/Kinematic-Solar-Resonance-Theory-of-ENSO)  
 **Classification:** Ocean-Atmosphere Dynamics / Solar-Terrestrial Physics / Celestial Mechanics  
-**Operational Framework:** Continuous Dynamical State-Space Engine v6.1 (1980–2026)
+**Operational Framework:** Continuous Dynamical State-Space Engine v6.2 (1980–2026)
 
 ---
 
